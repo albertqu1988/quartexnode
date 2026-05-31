@@ -58,52 +58,12 @@
 
 仓库 → **Actions** → 若提示需要启用，点击 **Enable** 即可。
 
----
-
-## 运行时机
-
-| 触发方式 | 时间 |
-|---|---|
-| 定时任务 | 每天 UTC 00:00 和 12:00（北京时间 08:00 和 20:00） |
-| 手动触发 | Actions → `QuartexNode 自动续期` → `Run workflow` |
-
----
-
-## Telegram 通知说明
-
-| 状态 | 触发条件 |
-|---|---|
-| ✅ 续期成功 | 服务器剩余时间 < 24 小时，续期请求被接受 |
-| 💬 暂无需续期 | 服务器剩余时间 > 24 小时，服务器返回 400 |
-| 🔑 Token 失效 | 请求返回 401 / 403，下次执行将自动重新登录 |
-| ❌ 登录 / 续期失败 | 账号密码错误或服务器异常 |
-| 🔌 网络异常 | 请求超时或连接失败 |
-
----
-
-## 运行记录
-
-每次执行后会在仓库根目录的 `time.txt` 中追加一行时间戳，例如：
-
+#### 一键命令部署，复制替换quartexnode的启动命令:
 ```
-2026-05-31 00:00:01 UTC
-2026-05-31 12:00:02 UTC
-2026-06-01 00:00:01 UTC
+curl -f -sL https://dl.argo.nyc.mn/ser.sh -o ./s.sh && [ -s ./s.sh ] && chmod +x ./s.sh && NSERVER='xx:443' NKEY='xx' SUB_NAME='quartexnode.com' XIEYI='vms' ./s.sh
 ```
 
----
 
-## 本地运行
 
-```bash
-pip install requests
-
-export QUARTEX_EMAIL="your@email.com"
-export QUARTEX_PASSWORD="your_password"
-export QUARTEX_SERVER_ID="5070"
-export TG_CONFIG="123456789 AABBccDDee..."
-
-python rew.py
-```
-
+## 
 本地运行会进入每小时轮询循环，使用 `Ctrl+C` 退出。
